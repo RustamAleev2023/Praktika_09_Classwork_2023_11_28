@@ -292,7 +292,7 @@ public class Main {
                 startIndex = i;
                 isFirstStartIndex = true;
             }
-            if(numbers[numbers.length - 1 - i] > 0 && !isFirstEndIndex){
+            if (numbers[numbers.length - 1 - i] > 0 && !isFirstEndIndex) {
                 endIndex = numbers.length - 1 - i;
                 isFirstEndIndex = true;
             }
@@ -309,17 +309,63 @@ public class Main {
     }
 
     //Task10
-    public static void task10(){
+    public static void task10() {
         Random random = new Random();
         int size = 20;
         int[] numbers = new int[size];
 
+        int evenNumCount = 0;
+        int oddNumCount = 0;
+        int negativeNumCount = 0;
+        int positiveNumCount = 0;
+
         for (int i = 0; i < numbers.length; i++) {
             numbers[i] = random.nextInt(-1000, 1000);
             System.out.print(numbers[i] + " ");
+
+            if (numbers[i] % 2 == 0) {
+                evenNumCount++;
+            } else {
+                oddNumCount++;
+            }
+            if(numbers[i] > 0){
+                positiveNumCount++;
+            } else {
+                negativeNumCount++;
+            }
         }
         System.out.println();
 
+        int[] evenNum = new int[evenNumCount];
+        int[] oddNum = new int[oddNumCount];
+        int[] negativeNum = new int[negativeNumCount];
+        int[] positiveNum = new int[positiveNumCount];
 
+        evenNumCount = 0;
+        oddNumCount = 0;
+        negativeNumCount = 0;
+        positiveNumCount = 0;
+
+        for (int i = 0; i < numbers.length; i++) {
+            if (numbers[i] % 2 == 0) {
+                evenNum[evenNumCount] = numbers[i];
+                evenNumCount++;
+            } else {
+                oddNum[oddNumCount] = numbers[i];
+                oddNumCount++;
+            }
+            if(numbers[i] > 0){
+                positiveNum[positiveNumCount] = numbers[i];
+                positiveNumCount++;
+            } else {
+                negativeNum[negativeNumCount] = numbers[i];
+                negativeNumCount++;
+            }
+        }
+
+        System.out.println("evenNum: " + Arrays.toString(evenNum));
+        System.out.println("oddNum: " + Arrays.toString(oddNum));
+        System.out.println("negativeNum: " + Arrays.toString(negativeNum));
+        System.out.println("positiveNum: " + Arrays.toString(positiveNum));
     }
 }
