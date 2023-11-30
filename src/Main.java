@@ -14,7 +14,8 @@ public class Main {
 //        task6();
 //        task7();
 //        task8();
-        task9();
+//        task9();
+        task10();
     }
 
     //Task2
@@ -182,7 +183,7 @@ public class Main {
         //MIN
         int min = Integer.MAX_VALUE;
         for (int i = 0; i < numbers.length; i++) {
-            if(numbers[i] < min){
+            if (numbers[i] < min) {
                 min = numbers[i];
             }
         }
@@ -191,7 +192,7 @@ public class Main {
         //MAX
         int max = Integer.MIN_VALUE;
         for (int i = 0; i < numbers.length; i++) {
-            if(numbers[i] > max){
+            if (numbers[i] > max) {
                 max = numbers[i];
             }
         }
@@ -202,13 +203,13 @@ public class Main {
         int negative = 0;
         int zero = 0;
         for (int i = 0; i < numbers.length; i++) {
-            if(numbers[i] < 0){
+            if (numbers[i] < 0) {
                 negative++;
             }
-            if(numbers[i] > 0){
+            if (numbers[i] > 0) {
                 positive++;
             }
-            if(numbers[i] == 0){
+            if (numbers[i] == 0) {
                 zero++;
             }
         }
@@ -218,31 +219,36 @@ public class Main {
     }
 
     //Task9
-    public static void task9(){
-        //        int[] numbers = {1,2,3,4,-1,-2,0,1,0,100};
+    public static void task9() {
+//                int[] numbers = {-1,2,3,4,-1,-2,0,1,0,-100};
 
         Random random = new Random();
-        int size = random.nextInt(100);
+        int size = 20;
         int[] numbers = new int[size];
+
         for (int i = 0; i < numbers.length; i++) {
-            numbers[i] = random.nextInt();
+            numbers[i] = random.nextInt(-1000, 1000);
+            System.out.print(numbers[i] + " ");
         }
+        System.out.println();
+
         int sumNegative = 0;
         int sumOddNum = 0;
         int sumEvenNum = 0;
         int multiply = 1;
+
         for (int i = 0; i < numbers.length; i++) {
-             if(numbers[i] < 0){
-                 sumNegative += numbers[i];
-             }
-             if(numbers[i] % 2 == 0){
-                 sumEvenNum += numbers[i];
-             } else {
-                 sumOddNum += numbers[i];
-             }
-             if(i % 3 == 0 ){
-                 multiply *= numbers[i];
-             }
+            if (numbers[i] < 0) {
+                sumNegative += numbers[i];
+            }
+            if (numbers[i] % 2 == 0) {
+                sumEvenNum += numbers[i];
+            } else {
+                sumOddNum += numbers[i];
+            }
+            if (i % 3 == 0) {
+                multiply *= numbers[i];
+            }
         }
         System.out.println("Sum negative = " + sumNegative);
         System.out.println("Sum odd = " + sumOddNum);
@@ -250,12 +256,12 @@ public class Main {
         System.out.println("Произведение элементов с индексами кратными 3 = " + multiply);
 
         //Произведение элементов между минимальным и максимальным элементом
-        Arrays.sort(numbers);
+
         int minMaxMultiply = 1;
         int min = Integer.MAX_VALUE;
         int minIndex = 0;
         for (int i = 0; i < numbers.length; i++) {
-            if(numbers[i] < min){
+            if (numbers[i] < min) {
                 min = numbers[i];
                 minIndex = i;
             }
@@ -263,7 +269,7 @@ public class Main {
         int max = Integer.MIN_VALUE;
         int maxIndex = 0;
         for (int i = 0; i < numbers.length; i++) {
-            if(numbers[i] > max){
+            if (numbers[i] > max) {
                 max = numbers[i];
                 maxIndex = i;
             }
@@ -274,7 +280,46 @@ public class Main {
         System.out.println("Произведение элементов между минимальным и максимальным элементом = " + minMaxMultiply);
 
         //Сумму элементов, находящихся между первым и последним положительными элементами
+        int sum = 0;
+        int startIndex = 0;
+        int endIndex = numbers.length - 1;
 
+        boolean isFirstStartIndex = false;
+        boolean isFirstEndIndex = false;
+
+        for (int i = 0; i < numbers.length; i++) {
+            if (numbers[i] > 0 && !isFirstStartIndex) {
+                startIndex = i;
+                isFirstStartIndex = true;
+            }
+            if(numbers[numbers.length - 1 - i] > 0 && !isFirstEndIndex){
+                endIndex = numbers.length - 1 - i;
+                isFirstEndIndex = true;
+            }
+        }
+
+        System.out.println("Start index = " + startIndex);
+        System.out.println("End index = " + endIndex);
+
+        for (int i = startIndex; i <= endIndex; i++) {
+            sum += numbers[i];
+        }
+
+        System.out.println("Сумма элементов, находящихся между первым и последним положительными элементами = " + sum);
     }
 
+    //Task10
+    public static void task10(){
+        Random random = new Random();
+        int size = 20;
+        int[] numbers = new int[size];
+
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = random.nextInt(-1000, 1000);
+            System.out.print(numbers[i] + " ");
+        }
+        System.out.println();
+
+
+    }
 }
